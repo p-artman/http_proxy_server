@@ -87,11 +87,13 @@ func validBodyJSON(w http.ResponseWriter, r *http.Request) bool {
 	}
 
 	if !json.Valid(byteData) {
-		log.Printf("[ERROR] body doesn't contain a valid JSON:\n%#v", string(byteData))
-		errMsg := fmt.Sprintf("Error! Request body doesn't contain a valid JSON.\n%v", string(byteData))
-		http.Error(w, errMsg, http.StatusBadRequest)
+		errMsg := fmt.Sprintf("request body doesn't contain a valid JSON.\n%v", string(byteData))
+		log.Printf("[ERRR] http 400 error - %s", errMsg)
+		// log.Printf("[DEBG] Request body contents: \n%v", string(byteData))
+		http.Error(w, "Error: "+errMsg, http.StatusBadRequest)
 		return false
 	}
+	log.Printf("[INFO] http 200 code - request body received, contents: \n%v", string(byteData))
 	return true
 }
 
