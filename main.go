@@ -11,9 +11,9 @@ import (
 func main() {
 	registerRoutes()
 	tasks = make(taskIDs)
-	log.Printf("starting the server on :%d...", serverPort)
-	http.ListenAndServe(fmt.Sprintf(":%v", serverPort), nil)
+	log.Printf("starting the server on %v:%v...", serverHost, serverPort)
+	http.ListenAndServe(fmt.Sprintf("%v:%v", serverHost, serverPort), nil)
 	log.Fatal(http.ListenAndServe(fmt.Sprint(serverPort), nil))
-	// TODO: add check whether the server is actually started
+	// TODO: add a verification step to ensure that the server is actually started (the line above is never initiated for now)
 	log.Printf("the server is successfully started.")
 }

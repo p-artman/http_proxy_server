@@ -10,7 +10,7 @@ import (
 func registerRoutes() {
 	http.HandleFunc("/", router)
 	http.HandleFunc("/task", router)
-	http.HandleFunc("/task/", taskHandler)
+	http.HandleFunc("/task/", taskHandler) // to ignore trailing slash
 }
 
 func router(w http.ResponseWriter, r *http.Request) {
@@ -70,7 +70,7 @@ func taskHandler(w http.ResponseWriter, r *http.Request) {
 	case "task":
 		pathArgs = false
 	default:
-		pathArgs = true
+		pathArgs = true // when we request for /task/{{taskID}} for example
 	}
 	log.Println("*** http request received, processing...")
 	log.Println("[DEBG] task handler is called, parse URL...")
