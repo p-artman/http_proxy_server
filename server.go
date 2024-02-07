@@ -12,8 +12,8 @@ import (
 
 const (
 	// initial version: hardcoded IPv4 address and port
-	serverHost string = "127.0.0.1"
-	serverPort uint16 = 4000
+	servHost string = "127.0.0.1"
+	servPort uint16 = 3615 // 3616-4259 were unavailable
 )
 
 var (
